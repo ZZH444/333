@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+</head>
+<body>
+    <!--页面头部 语义化标签-->
+    <header>
+        <h1>用户注册页面</h1>
+    </header>
+
+    <!--主体内容-->
+    <main>
+        <!--注册表单-->
+        <form id="registerForm" action="#" method="post">
+            <fieldset>
+                <legend>注册信息</legend>
+
+                <!--用户名 必填-->
+                <p>
+                    <label for="username">用户名：</label>
+                    <input type="text" name="username" id="username" required>
+                </p>
+
+                <!--密码 占位提示-->
+                <p>
+                    <label for="password">密码：</label>
+                    <input type="password" name="password" id="password" placeholder="6-16位字符">
+                </p>
+
+                <!--确认密码-->
+                <p>
+                    <label for="confirmPassword">确认密码：</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword">
+                </p>
+
+                <!--性别 单选框，两种label用法：for+id 以及包裹式-->
+                <p>
+                    性别：
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">男</label>
+
+                    <!--包裹式label写法-->
+                    <label>
+                        <input type="radio" name="gender" value="female">女
+                    </label>
+                </p>
+
+                <!--出生日期 HTML5 date-->
+                <p>
+                    <label for="birthday">出生日期：</label>
+                    <input type="date" name="birthday" id="birthday">
+                </p>
+
+                <!--邮箱 必填 email类型-->
+                <p>
+                    <label for="email">邮箱：</label>
+                    <input type="email" name="email" id="email" required>
+                </p>
+
+                <!--手机号 tel + pattern正则校验11位数字-->
+                <p>
+                    <label for="phone">手机号：</label>
+                    <input type="tel" name="phone" id="phone" pattern="[0-9]{11}">
+                </p>
+
+                <!--兴趣爱好 checkbox至少3项-->
+                <p>
+                    兴趣爱好：
+                    <label><input type="checkbox" name="hobby" value="reading">阅读</label>
+                    <label><input type="checkbox" name="hobby" value="sport">运动</label>
+                    <label><input type="checkbox" name="hobby" value="game">游戏</label>
+                </p>
+
+                <!--头像上传 accept图片，multiple多选-->
+                <p>
+                    <label for="avatar">上传头像：</label>
+                    <input type="file" name="avatar" id="avatar" accept="image/*" multiple>
+                </p>
+
+                <!--所在城市 select下拉，至少3个选项，默认选中一个-->
+                <p>
+                    <label for="city">所在城市：</label>
+                    <select name="city" id="city">
+                        <option value="changde" selected>常德</option>
+                        <option value="changsha">长沙</option>
+                        <option value="zhangjiajie">张家界</option>
+                    </select>
+                </p>
+
+                <!--个人简介 textarea多行文本 rows cols-->
+                <p>
+                    <label for="bio">个人简介：</label><br>
+                    <textarea name="bio" id="bio" rows="4" cols="50"></textarea>
+                </p>
+
+                <!--按钮：提交、重置-->
+                <p>
+                    <button type="submit">注册</button>
+                    <button type="reset">重置</button>
+                </p>
+            </fieldset>
+        </form>
+
+        <!--表格：注册须知，thead、tbody，colspan单元格合并-->
+        <h2>注册须知</h2>
+        <table border="1" cellpadding="6" cellspacing="0">
+            <thead>
+                <tr>
+                    <th colspan="2">用户注册条款摘要</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>条款1</th>
+                    <td>注册信息必须真实有效</td>
+                </tr>
+                <tr>
+                    <th>条款2</th>
+                    <td>密码请勿泄露给他人</td>
+                </tr>
+                <tr>
+                    <th>条款3</th>
+                    <td>禁止使用账号从事违法活动</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!--列表部分：ul无序列表、ol有序列表、dl定义列表-->
+        <h2>注册注意事项(ul无序列表)</h2>
+        <ul>
+            <li>用户名不能包含特殊符号</li>
+            <li>密码长度控制在6‑16位</li>
+            <li>手机号必须填写11位有效号码</li>
+        </ul>
+
+        <h2>注册步骤(ol有序列表)</h2>
+        <ol>
+            <li>填写个人基础信息</li>
+            <li>阅读注册须知</li>
+            <li>确认信息无误点击注册按钮</li>
+        </ol>
+
+        <h2>常见问题(dl定义列表)</h2>
+        <dl>
+            <dt>收不到邮箱验证码怎么办？</dt>
+            <dd>请检查垃圾邮件文件夹</dd>
+            <dt>忘记密码如何处理？</dt>
+            <dd>使用绑定邮箱找回密码</dd>
+        </dl>
+    </main>
+
+    <!--页脚 语义化标签footer-->
+    <footer>
+        <p>©2026 用户注册系统 版权所有</p>
+    </footer>
+
+    <!--JS：监听表单提交，阻止默认跳转，控制台打印表单数据-->
+    <script>
+        const form = document.getElementById('registerForm');
+        form.addEventListener('submit', function(e){
+            e.preventDefault(); //阻止表单默认提交跳转
+            const formData = new FormData(form);
+            console.log("====收集到的表单数据====");
+            for(let [key, value] of formData){
+                console.log(key + "：", value);
+            }
+        })
+    </script>
+</body>
+</html>
